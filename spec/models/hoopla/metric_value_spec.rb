@@ -14,7 +14,7 @@ RSpec.describe Hoopla::MetricValue, type: :model do
     
     it 'is invalid' do
       expect(metric_value).to be_invalid
-      expect(metric_value.errors.full_messages).to eq(["Href can't be blank", "User can't be blank", "Metric can't be blank"])
+      expect(metric_value.errors.full_messages).to eq(["User can't be blank", "Metric can't be blank"])
     end
 
     it 'href should be unique' do
@@ -28,7 +28,7 @@ RSpec.describe Hoopla::MetricValue, type: :model do
       metric_value = create(:metric_value)
       duplicated_metric_value = build(:metric_value, user: metric_value.user, metric: metric_value.metric)
       expect(duplicated_metric_value).to be_invalid
-      expect(duplicated_metric_value.errors.full_messages).to eq(["User has already been taken"])
+      expect(duplicated_metric_value.errors.full_messages).to eq(["Href has already been taken", "User has already been taken"])
     end
   end
 end

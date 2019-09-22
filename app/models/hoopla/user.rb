@@ -9,10 +9,6 @@ class Hoopla::User < ActiveRecord::Base
     "#{first_name} #{last_name}"
   end
 
-  def name_and_value_of(metric)
-    "#{name} - #{metric_value_of(metric)}"
-  end
-
   def metric_value_of(metric)
     metric_value = metric_values.find_by(metric: metric)
     metric_value.try(:value) || 0.0

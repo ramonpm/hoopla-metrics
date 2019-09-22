@@ -46,12 +46,4 @@ RSpec.describe Hoopla::User, type: :model do
       expect(another_user.metric_value_of(metric)).to eq(0.0)
     end
   end
-
-  describe '#name_and_value_of' do
-    it 'returns user name and value' do
-      user = build(:user, first_name: 'Ramon', last_name: 'Marques')
-      metric_value = create(:metric_value, value: 10.0, user: user)
-      expect(user.name_and_value_of(metric_value.metric)).to eq('Ramon Marques - 10.0')
-    end
-  end
 end

@@ -1,4 +1,4 @@
-<%= form_for(@hoopla_metric_value, url: hoopla_metric_metric_values_path(@metric)) do |f| %>
+<%= form_for(@hoopla_metric_value, url: form_path_of(@hoopla_metric_value)) do |f| %>
   <% if @hoopla_metric_value.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@hoopla_metric_value.errors.count, "error") %> prohibited this hoopla_metric_value from being saved:</h2>
@@ -11,18 +11,9 @@
     </div>
   <% end %>
 
-  <div class="field">
-    <%= f.label :href %><br>
-    <%= f.text_field :href %>
-  </div>
-  <div class="field">
-    <%= f.label :metric_id %><br>
-    <%= f.text_field :metric_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
-  </div>
+  <%= f.hidden_field :user_id %>
+  <%= f.hidden_field :metric_id %>
+
   <div class="field">
     <%= f.label :value %><br>
     <%= f.text_field :value %>

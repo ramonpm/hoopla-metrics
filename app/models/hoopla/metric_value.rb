@@ -7,4 +7,17 @@ class Hoopla::MetricValue < ActiveRecord::Base
   validates :metric, presence: true
 
   validates_uniqueness_of :user_id, scope: :metric_id
+
+  before_validation :default_href
+  before_create :hoopla_create
+
+  private
+
+  def default_href
+    self.href = 'not_synced' if self.new_record?
+  end
+
+  def hoopla_create
+    
+  end
 end

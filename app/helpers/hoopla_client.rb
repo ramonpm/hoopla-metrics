@@ -7,6 +7,7 @@ class HooplaClient
   PUBLIC_API_ENDPOINT = 'https://api.hoopla.net'
 
   LIST_METRICS_PATH = '/metrics'
+  LIST_USERS_PATH = '/users'
 
   def initialize
     descriptor
@@ -31,6 +32,10 @@ class HooplaClient
 
   def list_metrics(options = nil)
     get(LIST_METRICS_PATH, options)
+  end
+
+  def list_users(options = nil)
+    get(LIST_USERS_PATH, options)
   end
 
   private

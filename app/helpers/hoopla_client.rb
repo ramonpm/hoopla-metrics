@@ -8,6 +8,7 @@ class HooplaClient
 
   LIST_METRICS_PATH = '/metrics'
   LIST_USERS_PATH = '/users'
+  LIST_METRIC_VALUES_PATH = '/values'
 
   def initialize
     descriptor
@@ -26,6 +27,15 @@ class HooplaClient
     end
   end
 
+  def post(relative_url, payload, options)
+    response = client.post(relative_url, payload, options)
+    if response.status == 201
+      JSON.parse(response.body)
+    else
+      raise StandardError('Invalid response from')
+    end
+  end
+
   def get_relative_url(link)
     descriptor['links'].find { |l| l['rel'] == link }['href'].delete_prefix descriptor['href']
   end
@@ -36,6 +46,15 @@ class HooplaClient
 
   def list_users(options = nil)
     get(LIST_USERS_PATH, options)
+  end
+
+  def list_metric_values_of(metric_href, options = nil)
+    get(metric_href + LIST_METRIC_VALUES_PATH, options)
+  end
+
+  def create_metric_value(metric_href, payload)
+    metric_values_path = metric_href + LIST_METRIC_VALUES_PATH
+    post(metric_values_path, payload.to_json, {'Content-Type' => 'application/vnd.hoopla.metric-value+json'})
   end
 
   private

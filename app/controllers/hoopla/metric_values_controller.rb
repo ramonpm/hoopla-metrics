@@ -2,6 +2,7 @@ class Hoopla::MetricValuesController < ApplicationController
   before_action :set_hoopla_metric
   before_action :set_hoopla_metric_value, only: [:show, :edit, :update, :destroy]
   before_action :set_hoopla_user, only: [:new, :edit]
+  before_action :sync_hoopla_metric_values, only: [:index]
 
   # GET /hoopla/metric_values
   def index
@@ -74,5 +75,11 @@ class Hoopla::MetricValuesController < ApplicationController
   # Never trust parameters from the scary internet, only allow the white list through.
   def hoopla_metric_value_params
     params.require(:hoopla_metric_value).permit(:metric_id, :user_id, :value)
+  end
+
+  def sync_hoopla_metric_values
+    metric = set_hoopla_metric
+    metric_values_hash_list = get_client.list_metric_values_of(metric.href)
+    Hoopla::MetricValuesSynchronizer.sync(metric_values_hash_list)
   end
 end

@@ -1,1 +1,28 @@
+<p id="notice"><%= notice %></p>
+
 <h1>List of Values for <%= @metric.name %></h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Href</th>
+      <th>Metric</th>
+      <th>User</th>
+      <th>Value</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @hoopla_metric_values.each do |hoopla_metric_value| %>
+      <tr>
+        <td><%= hoopla_metric_value.href %></td>
+        <td><%= hoopla_metric_value.metric %></td>
+        <td><%= hoopla_metric_value.user %></td>
+        <td><%= hoopla_metric_value.value %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>

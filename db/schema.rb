@@ -11,7 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20190922174134) do
+ActiveRecord::Schema.define(version: 20190922185833) do
+
+  create_table "hoopla_metric_values", force: :cascade do |t|
+    t.string   "href"
+    t.integer  "metric_id"
+    t.integer  "user_id"
+    t.decimal  "value"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "hoopla_metric_values", ["metric_id"], name: "index_hoopla_metric_values_on_metric_id"
+  add_index "hoopla_metric_values", ["user_id"], name: "index_hoopla_metric_values_on_user_id"
 
   create_table "hoopla_metrics", force: :cascade do |t|
     t.string   "href"

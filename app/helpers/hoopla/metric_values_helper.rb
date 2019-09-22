@@ -1,0 +1,2 @@
+module Hoopla::MetricValuesHelper
+end

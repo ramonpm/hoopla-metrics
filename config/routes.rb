@@ -2,7 +2,7 @@ Rails.application.routes.draw do
 
   namespace :hoopla do
     resources :metrics, only: [:index] do
-      resources :metric_values, only: [:index]
+      resources :metric_values
     end
   end
 

@@ -2,6 +2,8 @@ require 'rails_helper'
 
 RSpec.feature 'Metrics', type: :feature do
   before(:each) do
+    allow_any_instance_of(Hoopla::MetricsController).to receive(:sync_hoopla_metrics) { true }
+    allow_any_instance_of(Hoopla::MetricsController).to receive(:sync_hoopla_users) { true }
     create(:metric, name: 'Pipeline')
     visit '/'
   end

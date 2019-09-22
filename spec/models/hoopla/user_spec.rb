@@ -18,10 +18,10 @@ RSpec.describe Hoopla::User, type: :model do
     end
 
     it 'href should be unique' do
-      metric = create(:metric, href: 'https://api.hoopla.net/metrics/1')
-      duplicated_metric = build(:metric, href: metric.href)
-      expect(duplicated_metric).to be_invalid
-      expect(duplicated_metric.errors.full_messages).to eq(['Href has already been taken'])
+      user = create(:user)
+      duplicated_user = build(:user, href: user.href)
+      expect(duplicated_user).to be_invalid
+      expect(duplicated_user.errors.full_messages).to eq(['Href has already been taken'])
     end
   end
 

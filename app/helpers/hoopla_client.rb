@@ -6,6 +6,8 @@ class HooplaClient
   CLIENT_SECRET = ENV['CLIENT_SECRET']
   PUBLIC_API_ENDPOINT = 'https://api.hoopla.net'
 
+  LIST_METRICS_PATH = '/metrics'
+
   def initialize
     descriptor
   end
@@ -25,6 +27,10 @@ class HooplaClient
 
   def get_relative_url(link)
     descriptor['links'].find { |l| l['rel'] == link }['href'].delete_prefix descriptor['href']
+  end
+
+  def list_metrics(options = nil)
+    get(LIST_METRICS_PATH, options)
   end
 
   private

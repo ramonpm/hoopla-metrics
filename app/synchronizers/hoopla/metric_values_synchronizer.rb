@@ -26,4 +26,13 @@ class Hoopla::MetricValuesSynchronizer < Synchronizer
     client = HooplaClient.hoopla_client
     client.create_metric_value(metric.href, payload)
   end
+
+  def self.update(metric_value)
+    payload = {
+      value: metric_value.value.to_f
+    }
+
+    client = HooplaClient.hoopla_client
+    client.update_metric_value(metric_value.href, payload)
+  end
 end

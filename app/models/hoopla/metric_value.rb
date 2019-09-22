@@ -10,11 +10,19 @@ class Hoopla::MetricValue < ActiveRecord::Base
 
   before_create :hoopla_create
 
+  before_update :hoopla_update
+
   private
 
   def hoopla_create
     response = Hoopla::MetricValuesSynchronizer.push(self)
     self.href = response['href']
+  rescue StandardError
+    false
+  end
+
+  def hoopla_update
+    Hoopla::MetricValuesSynchronizer.push(self)
   rescue StandardError
     false
   end

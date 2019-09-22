@@ -38,10 +38,12 @@ gem 'faraday_middleware'
 
 gem 'nokogiri', '>= 1.10.4'
 
+gem 'awesome_print'
+
 group :development, :test do
-  # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug'
+  gem 'pry-byebug'
   gem 'dotenv-rails'
+  gem 'rspec-rails', '~> 3.8'
 end
 
 group :development do
@@ -52,3 +54,8 @@ group :development do
   gem 'spring'
 end
 
+group :test do
+  gem 'capybara'
+  gem 'factory_bot_rails'
+  gem 'faker'
+end

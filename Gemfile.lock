@@ -81,7 +81,7 @@ GEM
     mini_portile2 (2.4.0)
     minitest (5.11.3)
     multipart-post (2.1.1)
-    nokogiri (1.10.3)
+    nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
     rack (1.6.11)
     rack-test (0.6.3)
@@ -166,6 +166,7 @@ DEPENDENCIES
   faraday_middleware
   jbuilder (~> 2.0)
   jquery-rails
+  nokogiri (>= 1.10.4)
   rails (= 4.2.11)
   sass-rails (~> 5.0)
   sdoc (~> 0.4.0)

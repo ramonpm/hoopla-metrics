@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 describe Hoopla::UsersSynchronizer do
-  it 'imports a new metric into the database' do
+  it 'imports a new user into the database' do
     hash = {
       href: 'https://api/users/1',
       first_name: Faker::Name.first_name,

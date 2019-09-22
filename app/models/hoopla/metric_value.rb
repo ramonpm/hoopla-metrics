@@ -14,7 +14,7 @@ class Hoopla::MetricValue < ActiveRecord::Base
   private
 
   def default_href
-    self.href = 'not_synced' if self.new_record?
+    self.href ||= 'not_synced' if self.new_record?
   end
 
   def hoopla_create

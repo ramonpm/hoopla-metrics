@@ -31,4 +31,27 @@ RSpec.describe Hoopla::User, type: :model do
       expect(user.name).to eq('Ramon Marques')
     end
   end
+
+  describe '#metric_value_of' do
+    let(:metric_value) { create(:metric_value, value: 10.0) }
+    let(:metric) { metric_value.metric }
+    let(:user) { metric_value.user }
+
+    it 'returns the metric_value of a given metric' do
+      expect(user.metric_value_of(metric)).to eq(10.0)
+    end
+
+    it 'returns 0 if the user has no value for the given metric' do
+      another_user = build(:user)
+      expect(another_user.metric_value_of(metric)).to eq(0.0)
+    end
+  end
+
+  describe '#name_and_value_of' do
+    it 'returns user name and value' do
+      user = build(:user, first_name: 'Ramon', last_name: 'Marques')
+      metric_value = create(:metric_value, value: 10.0, user: user)
+      expect(user.name_and_value_of(metric_value.metric)).to eq('Ramon Marques - 10.0')
+    end
+  end
 end

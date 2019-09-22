@@ -1,0 +1,7 @@
+<h1>List of Metrics</h1>
+<% @metrics.each do |metric| %>
+  <hr>
+  <div>
+    <%= link_to metric.name, hoopla_metric_metric_values_path(metric) %>
+  </div>
+<% end %>

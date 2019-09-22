@@ -1,10 +1,16 @@
 Rails.application.routes.draw do
 
+  namespace :hoopla do
+    resources :metrics, only: [:index] do
+      resources :metric_values, only: [:index]
+    end
+  end
+
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
 
   # You can have the root of your site routed with "root"
-  # root 'welcome#index'
+  root 'hoopla/metrics#index'
 
   # Example of regular route:
   #   get 'products/:id' => 'catalog#view'
